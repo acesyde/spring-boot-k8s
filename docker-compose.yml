@@ -1,0 +1,17 @@
+version: '2.1'
+
+services:
+  
+  mysql:
+    image: mysql:5.6
+    environment: 
+      MYSQL_ROOT_PASSWORD: password
+
+  admin:
+    build: ./admin
+    working_dir: /app
+    volumes:
+      - ./admin:/app
+    environment: 
+      - sprint_profiles_active=docker
+    command: gradle build bootRun
